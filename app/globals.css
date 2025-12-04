@@ -24,3 +24,146 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* globals.css (or wherever you keep global css) */
+
+/* loader is visible by default */
+#entry-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background: #000; /* fallback background while Vanta loads */
+  transition: opacity 1.25s ease, visibility 1.25s ease;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* hide loader class (applied by client after timeout) */
+#entry-loader.entry-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* hide main app content on SSR by default */
+#app-content {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+/* show the app when loader is finished */
+#app-content.visible {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* small centered fallback content inside loader (logo/text) */
+.loader-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.125rem;
+}
+
+/* #loader {
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  position: fixed;
+  z-index: 111;
+  color: white;
+  top: 0;
+  transition: all ease 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+#loader svg {
+  width: 500px;
+  height: 500px;
+  scale: 1;
+  overflow: visible;
+}
+
+#loader svg .cls-1 {
+  fill: transparent;
+  stroke: #c300ff;
+  stroke-width: 2;
+  stroke-dasharray: 10000;
+  stroke-dashoffset: 10000;
+  animation: textAnimation 5s linear;
+  visibility: hidden;
+}
+#loader svg .cls-i {
+  animation: textAnimation_i 5s linear;
+  animation-delay: 6s;
+  animation-fill-mode: forwards;
+}
+#loader svg .cls-rf {
+  animation: textAnimation_rf 5s linear;
+  animation-delay: 8.5s;
+  animation-fill-mode: forwards;
+}
+#loader svg .cls-an {
+  animation: textAnimation_an 5s linear;
+  animation-delay: 11.2s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes textAnimation_i {
+  0% {
+    visibility: visible;
+    stroke-dashoffset: 10000;
+  }
+  100% {
+    visibility: visible;
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes textAnimation_rf {
+  0% {
+    visibility: visible;
+    stroke-dashoffset: 10000;
+  }
+  100% {
+    visibility: visible;
+    stroke-dashoffset: 0;
+  }
+}
+@keyframes textAnimation_an {
+  0% {
+    visibility: visible;
+    stroke-dashoffset: 10000;
+  }
+  100% {
+    visibility: visible;
+    stroke-dashoffset: 0;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  h1 {
+    font-size: 1.7rem;
+  }
+  h4 {
+    color: rgb(167, 156, 152);
+    font-size: 0.8rem;
+  }
+  #loader svg {
+    width: 500px;
+    height: 500px;
+    scale: 0.6;
+    overflow: visible;
+  }
+}
