@@ -8,6 +8,10 @@ import { IoCallOutline } from "react-icons/io5";
 import { FiDownload } from "react-icons/fi";
 import FluidImage from "./FluidImage";
 import DistortImage from "./DistortImage";
+import dynamic from "next/dynamic";
+const Terminal = dynamic(() => import("@/components/Terminal"), {
+  ssr: false,
+});
 
 function Hero() {
   return (
@@ -43,10 +47,8 @@ function Hero() {
               </section>
             </section>
           </section>
-          <section className="_right_ _image_ w-1/2 h-full items-center justify-center">
-            {/* <FluidImage /> */}
-
-            <DistortImage />
+          <section className="_right_ _image_ w-1/2 h-full flex items-center justify-center  p-5">
+            <Terminal />
           </section>
         </section>
       </section>

@@ -21,6 +21,9 @@ export default function EntryLoadingClient() {
     appEl.classList.remove("visible");
 
     // Set the duration and delay you want
+    // const DISPLAY_MS = 0; // how long loader shows before starting fade
+    // const FADE_MS = 0; // must match CSS transition on #entry-loader
+
     const DISPLAY_MS = 2000; // how long loader shows before starting fade
     const FADE_MS = 1250; // must match CSS transition on #entry-loader
 

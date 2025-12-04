@@ -167,3 +167,29 @@ body {
     overflow: visible;
   }
 }
+
+/* Scrollbar width */
+.xterm-viewport::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Scrollbar track */
+.xterm-viewport::-webkit-scrollbar-track {
+  background: #1a1a1a; /* dark background */
+}
+
+/* Scrollbar thumb */
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background-color: #4caf50; /* green scrollbar */
+  border-radius: 4px;
+}
+
+/* Hover */
+.xterm-viewport::-webkit-scrollbar-thumb:hover {
+  background-color: #66ff66;
+}
+
+.temp {
+  color: #00ffd5;
+  background: #00FF00;
+}

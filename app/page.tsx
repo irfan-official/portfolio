@@ -4,6 +4,8 @@ import TheName from "@/components/TheName";
 import Hero from "@/components/Hero";
 import AboutMe from "@/components/AboutMe";
 import OverviewAndSkills from "@/components/OverviewAndSkills";
+import MyTimeline from "@/components/MyTimeLine";
+import Terminal from "@/components/Terminal";
 
 export default function Page() {
   return (
@@ -17,6 +19,10 @@ export default function Page() {
       <div className="w-full h-screen border relative flex items-center justify-center">
         <OverviewAndSkills />
       </div>
+      <div className="w-full min-h-screen border relative flex items-center justify-center">
+        {/* <MyTimeline /> */}
+      </div>
+      <div className="w-full min-h-screen border relative flex items-center justify-center p-10"></div>
     </main>
   );
 }
