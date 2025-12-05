@@ -35,7 +35,7 @@ export default function MyTerminal() {
       theme: {
         background: "#a300fb00",
         foreground: "#E5E5E5",
-        cursor: "#00FF00",
+        cursor: "#fb00ff",
       },
       allowProposedApi: true,
     });
@@ -278,7 +278,7 @@ export default function MyTerminal() {
             top: overlay.top,
             left: overlay.left,
             // right: overlay.right,
-            width: "100%",
+            width: "95%",
             height: overlay.height,
             cursor: "pointer",
             zIndex: 1000,

@@ -175,18 +175,18 @@ body {
 
 /* Scrollbar track */
 .xterm-viewport::-webkit-scrollbar-track {
-  background: #1a1a1a; /* dark background */
+  background: #1a1a1a00; /* dark background */
 }
 
 /* Scrollbar thumb */
 .xterm-viewport::-webkit-scrollbar-thumb {
-  background-color: #4caf50; /* green scrollbar */
+  background-color: #fb00ff; /* green scrollbar */
   border-radius: 4px;
 }
 
 /* Hover */
 .xterm-viewport::-webkit-scrollbar-thumb:hover {
-  background-color: #66ff66;
+  background-color: #ff6666;
 }
 
 .xterm-decoration-container span {
@@ -255,7 +255,7 @@ body {
 
 .temp {
   color: #00ffd5;
-  background: #9d4bff;
+  background: #fb1aff;
 }
 
 /* Make the circle border violet */
