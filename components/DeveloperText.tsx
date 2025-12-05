@@ -7,7 +7,7 @@ export default function VerticalLabel() {
   const letters = word.split("").reverse();
 
   return (
-    <aside className="w-[100px] lg:w-[120px] h-full  bg-gradient-to-r from-white/20 to-white/0 backdrop-blur-sm flex items-center justify-center">
+    <aside className="w-[100px] lg:w-[120px] h-full  bg-gradient-to-r from-purple-400/20 to-white/0 lg:from-white/20 lg:to-white/0 backdrop-blur-sm flex items-center justify-center">
       <h2
         className="text-[2.7rem] md:text-[4rem] lg:text-[4.25rem] font-extrabold text-gray-300/90 back leading-none"
         aria-hidden
