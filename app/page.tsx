@@ -37,7 +37,9 @@ export default function Page() {
         <h2 className="text-4xl lg:text-6xl font-semibold px-5">
           Learning Time Line
         </h2>
-        <MyTimeline />
+        <section className="w-full h-full flex flex-col pr-2">
+          <MyTimeline />
+        </section>
       </div>
       <div
         id="contact-section"
