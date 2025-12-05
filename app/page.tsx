@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <main className="w-full min-h-screen overflow-hidden text-white">
       <TsParticlesBG />
-      <header className="relative w-full h-full bg-amber-200">
+      <header className="relative w-full min-h-full bg-black">
         <VantaCells />
         <Hero />
       </header>
