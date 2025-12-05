@@ -14,7 +14,10 @@ export default function VerticalLabel() {
       >
         {letters.map((ch, i) => (
           // spacing controlled by my-6 (margin y)
-          <span key={i} className="block my-3 md:my-4 lg:my-6 -rotate-90 ">
+          <span
+            key={i}
+            className="block my-3 mx-1 md:mx-0 md:my-4 lg:my-6 -rotate-90 "
+          >
             {ch}
           </span>
         ))}

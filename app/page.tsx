@@ -33,7 +33,9 @@ export default function Page() {
         id="timeline-section"
         className="w-full min-h-screen relative flex flex-col items-center justify-center gap-15 py-10 lg:py-25"
       >
-        <h2 className="text-5xl font-semibold ">Learning Time Line</h2>
+        <h2 className="text-4xl lg:text-6xl font-semibold px-5">
+          Learning Time Line
+        </h2>
         <MyTimeline />
       </div>
 
