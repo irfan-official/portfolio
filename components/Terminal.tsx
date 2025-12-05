@@ -1,17 +1,31 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Terminal } from "xterm";
 import { FitAddon } from "xterm-addon-fit";
 import "xterm/css/xterm.css";
 
+interface LinkOverlay {
+  label: string;
+  id: string;
+  top: number;
+  left: number;
+  width: number;
+  height: number;
+}
+
 export default function MyTerminal() {
   const terminalRef = useRef<HTMLDivElement | null>(null);
-  const hasMountedRef = useRef(false); // Prevent double init
-  const inputRef = useRef(""); // Store current input safely
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const hasMountedRef = useRef(false);
+  const inputRef = useRef("");
+  const termInstanceRef = useRef<Terminal | null>(null);
+  const fitAddonRef = useRef<FitAddon | null>(null);
+  const [linkOverlays, setLinkOverlays] = useState<LinkOverlay[]>([]);
+  const linksActiveRef = useRef(false);
 
   useEffect(() => {
-    if (hasMountedRef.current) return; // Prevent double init (StrictMode)
+    if (hasMountedRef.current) return;
     hasMountedRef.current = true;
 
     const term = new Terminal({
@@ -23,24 +37,40 @@ export default function MyTerminal() {
         foreground: "#E5E5E5",
         cursor: "#00FF00",
       },
+      allowProposedApi: true,
     });
 
+    termInstanceRef.current = term;
+
     const fitAddon = new FitAddon();
+    fitAddonRef.current = fitAddon;
     term.loadAddon(fitAddon);
 
     term.open(terminalRef.current!);
     fitAddon.fit();
+
+    // Continuously re-apply link styles when they're active
+    term.onRender(() => {
+      if (linksActiveRef.current) {
+        applyLinkStyles();
+      }
+    });
 
     const prompt = "irfans.dev@ ~ $ ";
 
     term.write("Welcome to Irfan's Terminal\r\n");
     term.write(prompt);
 
-    // Terminal key handling
+    // Typing animation
+    setTimeout(() => {
+      typeEffect(term, "Hello, how can I help you?");
+    }, 1500);
+
+    // USER INPUT HANDLER
     term.onData((data) => {
       const char = data;
 
-      // CTRL + C
+      // Ctrl + C
       if (char === "\u0003") {
         term.write("^C\r\n");
         term.write(prompt);
@@ -50,13 +80,12 @@ export default function MyTerminal() {
 
       // ENTER
       if (char === "\r") {
-        const printedPrompt = runCommand(inputRef.current, term);
+        const printed = runCommand(inputRef.current, term);
         inputRef.current = "";
 
-        if (!printedPrompt) {
-          term.write("irfans.dev@ ~ $ ");
+        if (!printed) {
+          term.write(prompt);
         }
-
         return;
       }
 
@@ -69,11 +98,121 @@ export default function MyTerminal() {
         return;
       }
 
-      // Regular character
+      // Normal character
       inputRef.current += char;
       term.write(char);
     });
+
+    // Handle window resize
+    const handleResize = () => {
+      if (fitAddonRef.current) {
+        fitAddonRef.current.fit();
+        // Recreate overlays after resize
+        if (linksActiveRef.current) {
+          setTimeout(() => {
+            createLinkOverlays();
+          }, 100);
+        }
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
+
+  function typeEffect(term: Terminal, text: string, min = 30, max = 90) {
+    let i = 0;
+
+    function typeNext() {
+      if (i < text.length) {
+        term.write(text[i]);
+        i++;
+        const delay = Math.floor(Math.random() * (max - min + 1)) + min;
+        setTimeout(typeNext, delay);
+      } else {
+        term.write("\r\n");
+        runCommand("about", term);
+        term.write("irfans.dev@ ~ $ ");
+      }
+    }
+
+    typeNext();
+  }
+
+  function applyLinkStyles() {
+    const routes = [
+      { label: "About Me", id: "about-section" },
+      { label: "Skills", id: "skills-section" },
+      { label: "Learning Timeline", id: "timeline-section" },
+      { label: "Projects", id: "projects-section" },
+      { label: "Contact With Me", id: "contact-section" },
+    ];
+
+    const textSpans = terminalRef.current?.querySelectorAll(".xterm-rows span");
+
+    if (textSpans) {
+      textSpans.forEach((span) => {
+        const text = span.textContent?.trim();
+        const matchedRoute = routes.find((route) => text === route.label);
+
+        if (matchedRoute) {
+          const element = span as HTMLElement;
+          // Re-apply styling
+          element.style.textDecoration = "underline";
+          element.style.color = "#9d4bff";
+        }
+      });
+    }
+  }
+
+  function createLinkOverlays() {
+    setTimeout(() => {
+      const routes = [
+        { label: "About Me", id: "about-section" },
+        { label: "Skills", id: "skills-section" },
+        { label: "Learning Timeline", id: "timeline-section" },
+        { label: "Projects", id: "projects-section" },
+        { label: "Contact With Me", id: "contact-section" },
+      ];
+
+      const overlays: LinkOverlay[] = [];
+      const textSpans =
+        terminalRef.current?.querySelectorAll(".xterm-rows span");
+
+      if (textSpans) {
+        textSpans.forEach((span) => {
+          const text = span.textContent?.trim();
+          const matchedRoute = routes.find((route) => text === route.label);
+
+          if (matchedRoute) {
+            const element = span as HTMLElement;
+            const rect = element.getBoundingClientRect();
+            const containerRect = containerRef.current?.getBoundingClientRect();
+
+            if (containerRect) {
+              // Style the text
+              element.style.textDecoration = "underline";
+              element.style.color = "#9d4bff";
+
+              overlays.push({
+                label: matchedRoute.label,
+                id: matchedRoute.id,
+                top: rect.top - containerRect.top,
+                left: rect.left - containerRect.left,
+                width: rect.width,
+                height: rect.height,
+              });
+            }
+          }
+        });
+      }
+
+      setLinkOverlays(overlays);
+    }, 150);
+  }
 
   function runCommand(cmd: string, term: Terminal): boolean {
     const prompt = "irfans.dev@ ~ $ ";
@@ -87,26 +226,38 @@ export default function MyTerminal() {
         term.write("\r\nAvailable commands:\r\n");
         term.write("help  - show commands\r\n");
         term.write("clear - clear terminal\r\n");
+        term.write("about - show sections\r\n");
         term.write("\r\n");
         return false;
 
+      case "about":
+        term.write("\r\nAvailable Routes:\r\n");
+
+        const routes = [
+          { label: "About Me", id: "about-section" },
+          { label: "Skills", id: "skills-section" },
+          { label: "Learning Timeline", id: "timeline-section" },
+          { label: "Projects", id: "projects-section" },
+          { label: "Contact With Me", id: "contact-section" },
+        ];
+
+        routes.forEach((route) => {
+          term.write(route.label + "\r\n");
+        });
+
+        linksActiveRef.current = true;
+        createLinkOverlays();
+
+        term.write("\r\n");
+        return true;
+
       case "clear":
-        // Remove the current line, including typed characters
-        term.write("\x1b[2K\x1b[0G");
-
-        // Clear terminal viewport
-        term.clear();
-
-        // Move cursor to top-left
-        term.write("\x1b[H");
-
-        // Reset input
+        term.write("\x1b[2J\x1b[H");
         inputRef.current = "";
-
-        // Print prompt
+        linksActiveRef.current = false;
+        setLinkOverlays([]);
         term.write(prompt);
-
-        return true; // don't print another prompt
+        return true;
 
       default:
         term.write(`\r\nCommand not found: ${cmd}\r\n`);
@@ -114,14 +265,64 @@ export default function MyTerminal() {
     }
   }
 
+  const handleLinkClick = (targetId: string, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    // Navigate to section
+    const element = document.getElementById(targetId);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
     <div
-      className="rounded-lg border border-white/20 pl-2 pt-2 bg-[#a300fb4e] backdrop-blur-[2px]"
-      ref={terminalRef}
-      style={{
-        width: "100%",
-        height: "500px",
-      }}
-    />
+      ref={containerRef}
+      className="relative"
+      style={{ width: "100%", height: "500px" }}
+    >
+      <div
+        ref={terminalRef}
+        className="rounded-lg border border-white/20 pl-2 pt-2 bg-[#a300fb4e] backdrop-blur-[2px]"
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      />
+
+      {/* Link overlays */}
+      {linkOverlays.map((overlay, index) => (
+        <div
+          key={index}
+          onClick={(e) => handleLinkClick(overlay.id, e)}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onMouseUp={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "rgba(157, 75, 255, 0.2)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor = "transparent";
+          }}
+          style={{
+            position: "absolute",
+            top: overlay.top,
+            left: overlay.left,
+            width: overlay.width,
+            height: overlay.height,
+            cursor: "pointer",
+            zIndex: 1000,
+            pointerEvents: "auto",
+          }}
+          title={`Go to ${overlay.label}`}
+        />
+      ))}
+    </div>
   );
 }

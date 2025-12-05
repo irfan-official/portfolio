@@ -29,7 +29,11 @@ function SkillCard() {
       {icons.map(({ icon, text }, index) => (
         <div
           key={index}
-          className={`w-[15rem] h-[17rem] border border-white/15 hover:bg-white/10 cursor-pointer rounded-xl backdrop-blur-[5px] flex flex-col items-center justify-center gap-7 transition-all delay-80`}
+          className={`w-[15rem] h-[17rem] border ${
+            text === "Nodejs" && "bg-white/10"
+          }  ${text === "Nextjs" && "bg-white/5"}  ${
+            text === "Expressjs" && "bg-white/5"
+          }  border-white/15 hover:bg-white/10 cursor-pointer rounded-xl backdrop-blur-[5px] flex flex-col items-center justify-center gap-7 transition-all delay-40`}
         >
           <img
             src={`/${icon}`}

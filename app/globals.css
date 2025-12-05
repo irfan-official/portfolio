@@ -189,7 +189,73 @@ body {
   background-color: #66ff66;
 }
 
+.xterm-decoration-container span {
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+.xterm-decoration {
+  pointer-events: auto !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+  color: #bb86fc !important;
+  position: relative !important;
+}
+
+.xterm-decoration:hover {
+  color: #d5a6ff !important;
+}
+
+/* Style for xterm hyperlinks */
+.xterm a {
+  color: #ff4b4b !important;
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+.xterm a:hover {
+  color: #d5a6ff !important;
+}
+
+/* Remove old decoration styles if not needed */
+.xterm-decoration-container span {
+  text-decoration: underline !important;
+  cursor: pointer !important;
+}
+
+.xterm-decoration {
+  pointer-events: auto !important;
+  position: absolute !important;
+  z-index: 10 !important;
+  display: block !important;
+}
+
+.xterm-decoration-overview-ruler {
+  pointer-events: auto !important;
+}
+
+.xterm-rows {
+  position: relative;
+}
+
+.xterm-decoration {
+  pointer-events: auto !important;
+}
+
+.xterm-screen {
+  cursor: default;
+}
+
+.xterm-rows span {
+  pointer-events: auto !important;
+}
+
+.xterm-screen {
+  pointer-events: auto !important;
+}
+
 .temp {
   color: #00ffd5;
-  background: #00FF00;
+  background: #9d4bff;
 }
+
+/* Make the circle border violet */
