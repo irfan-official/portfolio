@@ -1,5 +1,5 @@
 export default function ShowTech() {
-  const height: string = "lg:h-9";
+  const height: string = "lg:h-9 rounded-sm";
   return (
     <div className=" min-h-full  border border-gray-700 p-2 rounded-lg overflow-x-auto mt-8 mx-auto">
       <table className="w-full border-collapse">
@@ -50,7 +50,7 @@ export default function ShowTech() {
               <img
                 src="https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white"
                 alt="Next.js"
-                className={height}
+                className={`${height} border border-white/40`}
               />
             </td>
           </tr>
@@ -67,7 +67,7 @@ export default function ShowTech() {
               <img
                 src="https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white"
                 alt="Express.js"
-                className={height}
+                className={`${height} border border-white/40`}
               />
               <img
                 src="https://img.shields.io/badge/Prisma-2D3748?style=for-the-badge&logo=prisma&logoColor=white"

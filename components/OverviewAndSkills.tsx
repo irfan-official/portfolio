@@ -15,7 +15,7 @@ function OverviewAndSkills() {
         <h2 className="text-5xl text-center font-semibold">
           Tools & Technology
         </h2>
-        <section className="w-full h-full mb-10 flex items-center justify-center px-5">
+        <section className="w-full h-full flex items-center justify-center px-5">
           <ShowTech />
         </section>
       </section>

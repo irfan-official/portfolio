@@ -13,7 +13,7 @@ function AboutMe() {
           molestias. Suscipit quia nam, voluptatum labore minima rerum iusto
           veritatis corporis! Ducimus soluta autem quasi odit eos!
         </p>
-        <section className="flex gap-5 items-center mt-2">
+        <section className="flex flex-col lg:flex-row gap-5 items-center mt-2">
           <section className="flex flex-col gap-2 items-center font-semibold">
             <span className="text-xl">Name:</span>
             <span className="text-lg">Kazi Mohammed Irfan</span>
