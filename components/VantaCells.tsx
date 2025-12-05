@@ -33,5 +33,5 @@ export default function VantaCells() {
     };
   }, [vantaEffect]);
 
-  return <div ref={vantaRef} className="w-full h-screen "></div>;
+  return <div ref={vantaRef} className="w-full h-full "></div>;
 }
