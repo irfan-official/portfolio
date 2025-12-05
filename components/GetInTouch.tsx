@@ -53,7 +53,7 @@ function GetInTouch() {
           onSubmit={(e) => {
             e.preventDefault();
           }}
-          className="w-full px-10 flex flex-col items-center justify-center gap-5  py-10 rounded-lg "
+          className="w-full px-5 flex flex-col items-center justify-center gap-5  py-10 rounded-lg "
         >
           <h2 className="text-3xl font-medium">Message Me</h2>
           <input
