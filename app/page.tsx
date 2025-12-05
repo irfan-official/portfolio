@@ -49,10 +49,10 @@ export default function Page() {
         <GetInTouch />
       </div>
 
-      <div
+      {/* <div
         id="projects-section"
         className="w-full min-h-screen relative flex flex-col items-center justify-center gap-15 py-10 lg:py-25"
-      ></div>
+      ></div> */}
     </main>
   );
 }

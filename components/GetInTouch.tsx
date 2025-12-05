@@ -40,7 +40,7 @@ function GetInTouch() {
           {mediaData.map(({ icon, title }, index) => (
             <section
               key={index}
-              className=" rounded-lg border p-3 flex flex-col gap-2 items-center justify-center text-4xl text-white border-white/20 bg-white/20 backdrop-blur-sm cursor-pointer"
+              className=" rounded-lg border p-3 flex flex-col gap-2 items-center justify-center text-4xl text-white border-white/20 bg-white/6 hover:bg-white/20 backdrop-blur-sm cursor-pointer"
             >
               <span className="c">{icon}</span>
             </section>
@@ -48,7 +48,7 @@ function GetInTouch() {
         </section>
       </section>
 
-      <section className="_right_ border border-white/20 bg-white/20 backdrop-blur-sm _message_ w-full lg:w-1/2 flex flex-col items-center gap-10 rounded-xl">
+      <section className="_right_ border border-white/20 bg-white/6 backdrop-blur-sm _message_ w-full lg:w-1/2 flex flex-col items-center gap-10 rounded-xl">
         <form
           onSubmit={(e) => {
             e.preventDefault();
