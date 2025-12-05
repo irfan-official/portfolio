@@ -5,7 +5,7 @@ function AboutMe() {
     <div className="w-full h-full flex items-center justify-center px-5">
       <section className="flex flex-col lg:w-[70%]  items-center justify-center mx-auto gap-0 lg:gap-7 border border-white/10 bg-transparent backdrop-blur-xs p-5 lg:p-15 rounded-xl">
         <h2 className="font-semibold text-4xl lg:text-6xl">About Me</h2>
-        <p className="mt-10 text-justify">
+        <p className="mt-10 text-center mx-auto max-w-[50rem] ">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil quaerat
           explicabo corrupti consequatur maiores accusantium. Suscipit repellat
           a dicta commodi perspiciatis nobis possimus officiis quibusdam
