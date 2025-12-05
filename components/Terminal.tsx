@@ -22,7 +22,7 @@ export default function MyTerminal() {
   const termInstanceRef = useRef<Terminal | null>(null);
   const fitAddonRef = useRef<FitAddon | null>(null);
   const [linkOverlays, setLinkOverlays] = useState<LinkOverlay[]>([]);
-  const linksActiveRef = useRef(false);
+  const linkPositionsRef = useRef<LinkOverlay[]>([]);
 
   useEffect(() => {
     if (hasMountedRef.current) return;
@@ -48,13 +48,6 @@ export default function MyTerminal() {
 
     term.open(terminalRef.current!);
     fitAddon.fit();
-
-    // Continuously re-apply link styles when they're active
-    term.onRender(() => {
-      if (linksActiveRef.current) {
-        applyLinkStyles();
-      }
-    });
 
     const prompt = "irfans.dev@ ~ $ ";
 
@@ -107,12 +100,10 @@ export default function MyTerminal() {
     const handleResize = () => {
       if (fitAddonRef.current) {
         fitAddonRef.current.fit();
-        // Recreate overlays after resize
-        if (linksActiveRef.current) {
-          setTimeout(() => {
-            createLinkOverlays();
-          }, 100);
-        }
+        // Recalculate overlay positions after resize
+        setTimeout(() => {
+          recalculateOverlays();
+        }, 100);
       }
     };
 
@@ -142,15 +133,16 @@ export default function MyTerminal() {
     typeNext();
   }
 
-  function applyLinkStyles() {
+  function recalculateOverlays() {
     const routes = [
-      { label: "About Me", id: "about-section" },
+      { label: "About_Me", id: "about-section" },
       { label: "Skills", id: "skills-section" },
-      { label: "Learning Timeline", id: "timeline-section" },
+      { label: "Learning_Timeline", id: "timeline-section" },
       { label: "Projects", id: "projects-section" },
-      { label: "Contact With Me", id: "contact-section" },
+      { label: "Contact_With_Me", id: "contact-section" },
     ];
 
+    const overlays: LinkOverlay[] = [];
     const textSpans = terminalRef.current?.querySelectorAll(".xterm-rows span");
 
     if (textSpans) {
@@ -160,58 +152,25 @@ export default function MyTerminal() {
 
         if (matchedRoute) {
           const element = span as HTMLElement;
-          // Re-apply styling
-          element.style.textDecoration = "underline";
-          element.style.color = "#9d4bff";
+          const rect = element.getBoundingClientRect();
+          const containerRect = containerRef.current?.getBoundingClientRect();
+
+          if (containerRect) {
+            overlays.push({
+              label: matchedRoute.label,
+              id: matchedRoute.id,
+              top: rect.top - containerRect.top,
+              left: rect.left - containerRect.left,
+              width: rect.width,
+              height: rect.height,
+            });
+          }
         }
       });
     }
-  }
 
-  function createLinkOverlays() {
-    setTimeout(() => {
-      const routes = [
-        { label: "About Me", id: "about-section" },
-        { label: "Skills", id: "skills-section" },
-        { label: "Learning Timeline", id: "timeline-section" },
-        { label: "Projects", id: "projects-section" },
-        { label: "Contact With Me", id: "contact-section" },
-      ];
-
-      const overlays: LinkOverlay[] = [];
-      const textSpans =
-        terminalRef.current?.querySelectorAll(".xterm-rows span");
-
-      if (textSpans) {
-        textSpans.forEach((span) => {
-          const text = span.textContent?.trim();
-          const matchedRoute = routes.find((route) => text === route.label);
-
-          if (matchedRoute) {
-            const element = span as HTMLElement;
-            const rect = element.getBoundingClientRect();
-            const containerRect = containerRef.current?.getBoundingClientRect();
-
-            if (containerRect) {
-              // Style the text
-              element.style.textDecoration = "underline";
-              element.style.color = "#9d4bff";
-
-              overlays.push({
-                label: matchedRoute.label,
-                id: matchedRoute.id,
-                top: rect.top - containerRect.top,
-                left: rect.left - containerRect.left,
-                width: rect.width,
-                height: rect.height,
-              });
-            }
-          }
-        });
-      }
-
-      setLinkOverlays(overlays);
-    }, 150);
+    linkPositionsRef.current = overlays;
+    setLinkOverlays(overlays);
   }
 
   function runCommand(cmd: string, term: Terminal): boolean {
@@ -234,19 +193,22 @@ export default function MyTerminal() {
         term.write("\r\nAvailable Routes:\r\n");
 
         const routes = [
-          { label: "About Me", id: "about-section" },
+          { label: "About_Me", id: "about-section" },
           { label: "Skills", id: "skills-section" },
-          { label: "Learning Timeline", id: "timeline-section" },
+          { label: "Learning_Timeline", id: "timeline-section" },
           { label: "Projects", id: "projects-section" },
-          { label: "Contact With Me", id: "contact-section" },
+          { label: "Contact_With_Me", id: "contact-section" },
         ];
 
         routes.forEach((route) => {
-          term.write(route.label + "\r\n");
+          // Write with ANSI codes: underline + purple color
+          term.write("\x1b[4m\x1b[38;5;141m" + route.label + "\x1b[0m\r\n");
         });
 
-        linksActiveRef.current = true;
-        createLinkOverlays();
+        // Calculate overlays after writing
+        setTimeout(() => {
+          recalculateOverlays();
+        }, 150);
 
         term.write("\r\n");
         return true;
@@ -254,7 +216,7 @@ export default function MyTerminal() {
       case "clear":
         term.write("\x1b[2J\x1b[H");
         inputRef.current = "";
-        linksActiveRef.current = false;
+        linkPositionsRef.current = [];
         setLinkOverlays([]);
         term.write(prompt);
         return true;
@@ -279,12 +241,12 @@ export default function MyTerminal() {
   return (
     <div
       ref={containerRef}
-      className="relative"
+      className="relative "
       style={{ width: "100%", height: "500px" }}
     >
       <div
         ref={terminalRef}
-        className="rounded-lg border border-white/20 pl-2 pt-2 bg-[#a300fb4e] backdrop-blur-[2px]"
+        className="rounded-lg relative border border-white/20 pl-2  pt-2 bg-[#a300fb4e] backdrop-blur-[2px]"
         style={{
           width: "100%",
           height: "100%",
@@ -294,7 +256,7 @@ export default function MyTerminal() {
       {/* Link overlays */}
       {linkOverlays.map((overlay, index) => (
         <div
-          key={index}
+          key={`${overlay.label}-${index}`}
           onClick={(e) => handleLinkClick(overlay.id, e)}
           onMouseDown={(e) => {
             e.preventDefault();
@@ -312,9 +274,11 @@ export default function MyTerminal() {
           }}
           style={{
             position: "absolute",
+            // background: "#fff",
             top: overlay.top,
             left: overlay.left,
-            width: overlay.width,
+            // right: overlay.right,
+            width: "100%",
             height: overlay.height,
             cursor: "pointer",
             zIndex: 1000,

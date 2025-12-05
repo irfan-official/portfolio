@@ -2,7 +2,7 @@ import React from "react";
 
 function AboutMe() {
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-full flex items-center justify-center">
       <section className="flex flex-col w-[70%] h-[75%] items-center justify-center mx-auto gap-7 border border-white/10 bg-transparent backdrop-blur-xs p-5 lg:p-15 rounded-xl">
         <h2 className="font-semibold text-6xl">About Me</h2>
         <p className="mt-10">

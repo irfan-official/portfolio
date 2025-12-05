@@ -15,20 +15,29 @@ export default function Page() {
         <VantaCells />
         <Hero />
       </header>
-      <AboutMe />
+      <section id="about-section" className="w-full h-screen">
+        <AboutMe />
+      </section>
+
       <div
         id="skills-section"
         className="w-full h-screen border relative flex items-center justify-center"
       >
         <OverviewAndSkills />
       </div>
+
       <div
-        id="projects-section"
+        id="timeline-section"
         className="w-full min-h-screen border relative flex flex-col items-center justify-center gap-15"
       >
         <h2 className="text-5xl font-semibold mt-10">Learning Time Line</h2>
         <MyTimeline />
       </div>
+
+      <div
+        id="projects-section"
+        className="w-full min-h-screen border relative flex items-center justify-center p-10"
+      ></div>
       <div
         id="contact-section"
         className="w-full min-h-screen border relative flex items-center justify-center p-10"
