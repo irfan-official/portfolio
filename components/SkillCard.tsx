@@ -29,7 +29,7 @@ function SkillCard() {
       {icons.map(({ icon, text }, index) => (
         <div
           key={index}
-          className={`w-[15rem] h-[17rem] border ${
+          className={`w-[10rem] h-[12rem] md:w-[15rem] md:h-[17rem] border ${
             text === "Nodejs" && "bg-white/10"
           }  ${text === "Nextjs" && "bg-white/5"}  ${
             text === "Expressjs" && "bg-white/5"
@@ -38,12 +38,14 @@ function SkillCard() {
           <img
             src={`/${icon}`}
             alt=""
-            className={`w-22 ${
+            className={`w-15 md:w-22 ${
               (text === "Nextjs" || text === "Expressjs") &&
               "overflow-hidden rounded-full bg-amber-50 border border-white"
             }`}
           />
-          <h2 className=" w-full text-center text-4xl font-semibold">{text}</h2>
+          <h2 className=" w-full text-center text-2xl md:text-4xl font-semibold">
+            {text}
+          </h2>
         </div>
       ))}
     </>

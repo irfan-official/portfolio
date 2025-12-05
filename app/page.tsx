@@ -5,23 +5,23 @@ import Hero from "@/components/Hero";
 import AboutMe from "@/components/AboutMe";
 import OverviewAndSkills from "@/components/OverviewAndSkills";
 import MyTimeline from "@/components/MyTimeLine";
-import Terminal from "@/components/Terminal";
 
 export default function Page() {
   return (
-    <main className="w-full min-h-screen">
+    <main className="w-screen min-h-screen">
       <TsParticlesBG />
       <header className="relative w-full h-full">
         <VantaCells />
         <Hero />
       </header>
+
       <section id="about-section" className="w-full h-screen">
         <AboutMe />
       </section>
 
       <div
         id="skills-section"
-        className="w-full h-screen border relative flex items-center justify-center"
+        className="w-full min-h-screen border relative flex items-center justify-center"
       >
         <OverviewAndSkills />
       </div>

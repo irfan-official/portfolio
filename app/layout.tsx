@@ -1,6 +1,7 @@
 // app/layout.tsx  (server component)
 import "./globals.css";
 import EntryLoadingClient from "@/components/EntryLoading";
+import ScrollIndicator from "@/components/ScrollIndicator";
 
 export const metadata = {
   title: "My App",
@@ -14,10 +15,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {/* 1) Server-rendered loader markup (visible by default on SSR) */}
-
+        {/* Loading screen */}
         <div id="entry-loader" aria-hidden="false">
-          {/* fallback: simple static content so server renders something immediately */}
           <div className="loader-fallback">
             <svg
               width="64"
@@ -31,12 +30,14 @@ export default function RootLayout({
             <div>Loading…</div>
           </div>
 
-          {/* Client component that will mount and initialise Vanta and hide the loader */}
           <EntryLoadingClient />
         </div>
 
-        {/* 2) Main app content hidden by default via CSS (#app-content) */}
-        <div id="app-content">{children}</div>
+        {/* Scroll indicator (always visible because of high z-index) */}
+        <div id="app-content">
+          {/* <ScrollIndicator /> */}
+          {children}
+        </div>
       </body>
     </html>
   );
