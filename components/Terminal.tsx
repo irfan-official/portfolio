@@ -246,7 +246,7 @@ export default function MyTerminal() {
     >
       <div
         ref={terminalRef}
-        className="rounded-lg relative border border-white/20 pl-2  pt-2 bg-[#a300fb4e] backdrop-blur-[2px]"
+        className="rounded-lg relative border border-white/20 pl-2  pt-2 bg-[#320e4692] backdrop-blur-[2px]"
         style={{
           width: "100%",
           height: "100%",

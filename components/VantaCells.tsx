@@ -21,7 +21,7 @@ export default function VantaCells() {
           minWidth: 200.0,
           scale: 1.0,
           color1: 0x0,
-          color2: 0x9d1bd2,
+          color2: 0xde00ff,
           size: 0.2,
           speed: 0.0,
         })
