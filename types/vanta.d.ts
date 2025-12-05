@@ -1,5 +1,6 @@
 declare module "vanta/dist/vanta.fog.min";
 declare module "vanta/dist/vanta.birds.min";
+declare module "vanta/dist/vanta.topology.min";
 
 interface Window {
   VANTA?: any;

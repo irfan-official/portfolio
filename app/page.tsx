@@ -41,7 +41,8 @@ export default function Page() {
       </div>
       <div
         id="contact-section"
-        className="w-full min-h-screen relative flex flex-col items-center justify-evenly gap-15 py-10 lg:py-25 "
+        className="w-full min-h-screen relative flex flex-col items-center justify-evenly gap-15 py-10 lg:py-25 
+             bg-[url('/bg_2.png')] bg-cover bg-center bg-no-repeat"
       >
         <h2 className="text-4xl lg:text-6xl font-semibold px-5 hidden lg:block">
           Get In Touch

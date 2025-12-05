@@ -15,18 +15,22 @@ function GetInTouch() {
     {
       icon: <HiOutlineMail size={30} />,
       title: "Email",
+      link: "mailto:irfanofficial.work@gmail.com",
     },
     {
       icon: <LuGithub size={30} />,
       title: "GitHub",
+      link: "https://github.com/irfan-official",
     },
     {
       icon: <FaLinkedinIn size={30} />,
       title: "LinkedIn",
+      link: "https://www.linkedin.com/in/kazi-irfan/",
     },
     {
       icon: <BsTwitterX size={30} />,
       title: "X",
+      link: "",
     },
   ];
   return (
@@ -37,13 +41,16 @@ function GetInTouch() {
         </section>
 
         <section className="w-full h-full flex items-center justify-center gap-4 flex-wrap">
-          {mediaData.map(({ icon, title }, index) => (
-            <section
+          {mediaData.map(({ icon, link }, index) => (
+            <a
               key={index}
+              href={link}
+              target="_blank"
+              rel="noopener noreferrer"
               className=" rounded-lg border p-3 flex flex-col gap-2 items-center justify-center text-4xl text-white border-white/20 bg-white/6 hover:bg-white/20 backdrop-blur-sm cursor-pointer"
             >
               <span className="c">{icon}</span>
-            </section>
+            </a>
           ))}
         </section>
       </section>
@@ -78,7 +85,7 @@ function GetInTouch() {
           ></textarea>
           <button
             type="submit"
-            className="py-3 w-full max-w-[30rem] rounded-md border bg-black border-white hover:bg-slate-950 text-white cursor-pointer"
+            className="py-3 w-full max-w-[30rem] rounded-md  bg-slate-950 border border-purple-400  hover:bg-purple-950 text-white cursor-pointer"
           >
             Submit
           </button>
