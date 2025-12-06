@@ -36,20 +36,28 @@ function Hero() {
                 architecture, performance, and delivering high-quality code.
               </section>
               <section className="_button_ flex items-center gap-3 mt-5">
-                <button className="magnet  px-3 py-2 lg:px-5 lg:py-3 rounded-md text-white bg-violet-600 border border-violet-600 hover:bg-violet-800 font-semibold flex items-center gap-2 cursor-pointer">
+                <a
+                  target="_black"
+                  href="https://drive.google.com/file/d/1v2DwAuWrMtfxjC-7n3h7vpKJwznogsy5/view?usp=sharing"
+                  className="magnet  px-3 py-2 lg:px-5 lg:py-3 rounded-md text-white bg-violet-600 border border-violet-600 hover:bg-violet-800 font-semibold flex items-center gap-2 cursor-pointer"
+                >
                   <span className="text-lg">
                     <FiDownload />
                   </span>
                   <span className="text-[0.9rem] lg:text-[1rem]  text-nowrap">
                     Download CV
                   </span>
-                </button>
-                <button className="px-3 py-2 lg:px-5 lg:py-3  bg-transparent border-2 border-violet-700 text-white font-semibold flex items-center gap-2 rounded-md hover:bg-violet-700/20 cursor-pointer hover:text-violet-500">
-                  <span className="text-lg">
-                    <IoCallOutline />
-                  </span>
-                  <span className="text-[0.9rem] lg:text-[1rem]">Contact</span>
-                </button>
+                </a>
+                <a href="tel:+8801321934658">
+                  <button className="px-3 py-2 lg:px-5 lg:py-3 bg-transparent border-2 border-violet-700 text-white font-semibold flex items-center gap-2 rounded-md hover:bg-violet-700/20 cursor-pointer hover:text-violet-500">
+                    <span className="text-lg">
+                      <IoCallOutline />
+                    </span>
+                    <span className="text-[0.9rem] lg:text-[1rem]">
+                      Contact
+                    </span>
+                  </button>
+                </a>
               </section>
             </section>
           </section>
