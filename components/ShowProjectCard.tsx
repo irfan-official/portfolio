@@ -4,7 +4,7 @@ import { FaExternalLinkAlt } from "react-icons/fa";
 function ShowProjectCard() {
   const projectData = [
     {
-      liveLink: "https://assignment10.irfans.dev",
+      liveLink: "https://foodlovers.irfans.dev",
       imagePath: "/projects/FoodReviews.png",
       title: "Food Lovers",
       overviews:
