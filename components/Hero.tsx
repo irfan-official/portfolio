@@ -53,7 +53,7 @@ function Hero() {
               </section>
             </section>
           </section>
-          <section className="_right_ hidden _image_ w-1/2 h-full lg:flex items-center justify-center  p-5 ">
+          <section className="_right_ hidden _image_ w-1/2 h-full lg:flex items-center justify-center  xl:p-5 ">
             <Terminal />
           </section>
         </section>

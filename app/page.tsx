@@ -6,6 +6,7 @@ import AboutMe from "@/components/AboutMe";
 import OverviewAndSkills from "@/components/OverviewAndSkills";
 import MyTimeline from "@/components/MyTimeLine";
 import GetInTouch from "@/components/GetInTouch";
+import ShowProjects from "@/components/ShowProjects";
 
 export default function Page() {
   return (
@@ -20,7 +21,7 @@ export default function Page() {
 
       <section
         id="about-section"
-        className="w-full min-h-screen relative flex items-center justify-center py-10 lg:py-25 "
+        className="w-full min-h-[70vh] relative flex items-center justify-center py-10 lg:py-25 "
       >
         <AboutMe />
       </section>
@@ -44,6 +45,13 @@ export default function Page() {
         </section>
       </div>
       <div
+        id="projects-section"
+        className="w-full min-h-screen relative flex flex-col items-center justify-center gap-15 my-10 lg:my-25 px-5"
+      >
+        <h2 className="text-4xl lg:text-6xl font-semibold px-5 ">Projects</h2>
+        <ShowProjects />
+      </div>
+      <div
         id="contact-section"
         className="w-full min-h-screen relative flex flex-col items-center justify-evenly gap-15 py-10 lg:py-25 
              bg-[url('/bg_2.png')] bg-cover bg-center bg-no-repeat"
@@ -53,11 +61,6 @@ export default function Page() {
         </h2>
         <GetInTouch />
       </div>
-
-      {/* <div
-        id="projects-section"
-        className="w-full min-h-screen relative flex flex-col items-center justify-center gap-15 py-10 lg:py-25"
-      ></div> */}
     </main>
   );
 }

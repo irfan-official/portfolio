@@ -241,8 +241,8 @@ export default function MyTerminal() {
   return (
     <div
       ref={containerRef}
-      className="relative hidden lg:block"
-      style={{ width: "100%", height: "500px" }}
+      className="relative hidden lg:block w-[90%] "
+      style={{ height: "500px" }}
     >
       <div
         ref={terminalRef}

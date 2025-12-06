@@ -47,7 +47,7 @@ function GetInTouch() {
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className=" rounded-lg border p-3 flex flex-col gap-2 items-center justify-center text-4xl text-white border-white/20 bg-white/6 hover:bg-white/20 backdrop-blur-sm cursor-pointer"
+              className=" rounded-lg border p-3 flex flex-col gap-2 items-center justify-center text-4xl text-white border-white/20 bg-white/20 hover:bg-white/40 backdrop-blur-sm cursor-pointer"
             >
               <span className="c">{icon}</span>
             </a>

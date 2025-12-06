@@ -16,7 +16,7 @@ export default function VerticalLabel() {
           // spacing controlled by my-6 (margin y)
           <span
             key={i}
-            className="block my-3 mx-1 md:mx-0 md:my-4 lg:my-6 -rotate-90 "
+            className="block my-3 mx-1 md:mx-0 md:my-2 xl:my-6 -rotate-90 "
           >
             {ch}
           </span>
