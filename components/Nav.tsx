@@ -6,13 +6,13 @@ function Nav() {
   const list = (
     <ul className="flex items-center gap-10 text-xl">
       <li>
-        <Link href="">About</Link>
+        <Link href="#">About</Link>
       </li>
       <li>
-        <Link href="">work</Link>
+        <Link href="#">work</Link>
       </li>
       <li>
-        <Link href="">Contact</Link>
+        <Link href="#">Contact</Link>
       </li>
     </ul>
   );
