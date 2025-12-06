@@ -67,6 +67,19 @@ function ShowProjectCard() {
         "JavaScript",
       ],
     },
+    {
+      liveLink: "https://ph-assignment-08-alpha.vercel.app",
+      imagePath: "/projects/MyStore.png",
+      title: "My Store",
+      overviews:
+        "A React-based app store–style platform for browsing and installing apps, focused on clean and responsive UI.",
+      highlightDescriptions: [
+        "Built an app-store-inspired interface for discovering and installing apps.",
+        "Designed a responsive and modern UI using React, TailwindCSS, and SweetAlert.",
+        "Implemented smooth user interactions with a lightweight and optimized frontend flow.",
+      ],
+      coreTech: ["React", "TailwindCSS", "SweetAlert", "JavaScript"],
+    },
   ];
   return projectData.map(
     (
@@ -82,12 +95,12 @@ function ShowProjectCard() {
     ) => (
       <div
         key={index1}
-        className="sm:max-w-4/5 max-w-full sm:min-w-120  rounded-lg border border-slate-200/20 flex items-center justify-center gap-0 sm:gap-2 overflow-clip bg-white/10 backdrop-blur-[5px] p-2 flex-col sm:flex-row"
+        className="sm:max-w-[38%] lg:max-w-[70%] xl:max-w-[38%] max-w-full sm:min-w-120  rounded-lg border border-slate-200/20 flex items-center justify-center gap-0 sm:gap-2 overflow-clip bg-white/10 backdrop-blur-[5px] p-2 flex-col sm:flex-row"
       >
         <section className="_project_title_ font-semibold text-lg sm:hidden border-b border-b-slate-100/10 text-center w-full pb-1">
           {title}
         </section>
-        <section className="_left_ _image_ w-full sm:w-2/5 h-full  relative cursor-pointer ">
+        <section className="_left_ _image_ w-full sm:w-[14rem] h-full  relative cursor-pointer ">
           <img
             src={imagePath}
             alt={title}
@@ -106,7 +119,7 @@ function ShowProjectCard() {
             </a>
           </div>
         </section>
-        <section className="_right_ _details_ flex flex-col items-center gap-2 px-1 py-3 sm:py-0  w-full sm:w-3/5 h-full">
+        <section className="_right_ _details_ flex flex-col items-center gap-2 px-1 py-3 sm:py-0  w-full sm:w-[70%] h-full">
           <section className="_project_title_ hidden sm:block font-semibold text-lg">
             {title}
           </section>
