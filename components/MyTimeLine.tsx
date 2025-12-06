@@ -10,8 +10,8 @@ import CssIcon from "@/icons/CssIcon";
 import JavaScriptIcon from "@/icons/JavaScriptIcon";
 import FigmaIcon from "@/icons/FigmaIcon";
 import GraduationIcon from "@/icons/GraduationIcon";
-import { FaGraduationCap } from "react-icons/fa";
 import ProgrammingHeroIcon from "@/icons/ProgrammingHeroIcon";
+import { FaGraduationCap } from "react-icons/fa6";
 
 import {
   VerticalTimeline,
@@ -57,11 +57,7 @@ export default function MyTimeline() {
         contentArrowStyle={contentArrowStyle}
         date="October 2025"
         iconStyle={{ background: "#000", color: "#fff" }}
-        icon={
-          <span className="w-full h-full text-5xl">
-            <FaGraduationCap size={60} />
-          </span>
-        }
+        icon={<GraduationIcon />}
       >
         <h3 className="vertical-timeline-element-title">
           Graduation (B.Sc in CSE)

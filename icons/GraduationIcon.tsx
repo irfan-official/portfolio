@@ -3,9 +3,11 @@ import { FaGraduationCap } from "react-icons/fa";
 
 function GraduationIcon() {
   return (
-    <span className="w-full h-full overflow-hidden rounded-full bg-amber-50 border-2 border-black">
-      <FaGraduationCap />
-    </span>
+    <img
+      src={`/graduate-cap.png`}
+      alt=""
+      className="w-full h-full overflow-hidden rounded-full bg-black p-3"
+    />
   );
 }
 
