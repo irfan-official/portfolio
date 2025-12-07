@@ -57,8 +57,10 @@ export default function MyTerminal() {
     // Typing animation
     setTimeout(() => {
       typeEffect(term, "Hello, how can I help you?");
-    }, 4000);
+    }, 3700);
 
+    // old is --> 1500
+    //make the new --> is 4000
     // USER INPUT HANDLER
     term.onData((data) => {
       const char = data;
