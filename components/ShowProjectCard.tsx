@@ -49,6 +49,19 @@ function ShowProjectCard() {
       ],
     },
     {
+      liveLink: "https://ph-assignment-08-alpha.vercel.app",
+      imagePath: "/projects/MyStore.png",
+      title: "My Store",
+      overviews:
+        "A React-based app store–style platform for browsing and installing apps, focused on clean and responsive UI.",
+      highlightDescriptions: [
+        "Built an app-store-inspired interface for discovering and installing apps.",
+        "Designed a responsive and modern UI using React, TailwindCSS, and SweetAlert.",
+        "Implemented smooth user interactions with a lightweight and optimized frontend flow.",
+      ],
+      coreTech: ["React", "TailwindCSS", "SweetAlert", "JavaScript"],
+    },
+    {
       liveLink: "https://petcare.irfans.dev",
       imagePath: "/projects/PetCare.png",
       title: "Pet Care",
@@ -66,19 +79,6 @@ function ShowProjectCard() {
         "TailwindCSS",
         "JavaScript",
       ],
-    },
-    {
-      liveLink: "https://ph-assignment-08-alpha.vercel.app",
-      imagePath: "/projects/MyStore.png",
-      title: "My Store",
-      overviews:
-        "A React-based app store–style platform for browsing and installing apps, focused on clean and responsive UI.",
-      highlightDescriptions: [
-        "Built an app-store-inspired interface for discovering and installing apps.",
-        "Designed a responsive and modern UI using React, TailwindCSS, and SweetAlert.",
-        "Implemented smooth user interactions with a lightweight and optimized frontend flow.",
-      ],
-      coreTech: ["React", "TailwindCSS", "SweetAlert", "JavaScript"],
     },
   ];
   return projectData.map(
