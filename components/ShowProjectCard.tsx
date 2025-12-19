@@ -49,7 +49,8 @@ function ShowProjectCard() {
       ],
     },
     {
-      liveLink: "https://ph-assignment-08-alpha.vercel.app",
+      liveLink:
+        "https://ph-assignment-08-git-main-kazi-irfans-projects.vercel.app/",
       imagePath: "/projects/MyStore.png",
       title: "My Store",
       overviews:
